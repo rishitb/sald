@@ -1,3 +1,8 @@
+/*
+Rishit Bhatia
+https://github.com/rishitb/sald
+*/
+
 function Point(x, y) {
   this.x = x;
   this.y = y;
@@ -43,7 +48,7 @@ function rectangleRectangle(r1, r2) {
  *  true if p1 and p2 do intersect
  */
 function convexConvex(p1, p2) {
-	
+	myArray.length=0;
 	for(var i=0;i<p1.length;++i)
 	{
 		var p11=p1[i];
@@ -84,7 +89,7 @@ function rayCircle(r, c) {
 	
 	else if(root==0)		//tangent
 	{
-		
+		return(-b/(2*a));
 	}
 	else
 	{
@@ -96,7 +101,7 @@ function rayCircle(r, c) {
 		{
 			if((root1<0&&root2<0)||(root1>1&&root2>1))
 			{
-				return null;
+				return null;		//Line completely outside
 			}
 			else
 			return null; 		//Line completely inside
@@ -104,10 +109,10 @@ function rayCircle(r, c) {
 		else
 		{
 			if(root1>=0&&root1<=1)
-				myArray.push(a1.lerp(a2,root1));
+				return(root1);
 				
-			if(roo21>=0&&root2<=1)
-				myArray.push(a1.lerp(a2,root2));	
+			if(roo2>=0&&root2<=1)
+				return(root2);	
 		}
 	}
 	
@@ -123,7 +128,7 @@ function rayCircle(r, c) {
  *    -- NOTE: 0.0 <= t <= 1.0 gives the position of the first intersection
  */
 function rayRectangle(r, b) {
-	
+	myArray.length=0;
 	var botleft={x:b.min.x,y:b.min.y};
 	var botright={x:b.max.x,y:b.min.y};
 	var topleft={x:b.min.x,y:b.max.y};
@@ -164,7 +169,7 @@ function rayRectangle(r, b) {
  *    -- NOTE: 0.0 <= t <= 1.0 gives the position of the first intersection
  */
 function rayConvex(r, p) {
-	
+	myArray.length=0;
 	for(var i=0;i<p.length;++i)
 	{
 		var point1 = p[i];
@@ -196,6 +201,7 @@ function rayConvex(r, p) {
 //Checking intersection between two lines
 function LineLine(a1,a2,b1,b2)
 {
+	myArray.length=0;
 	var result;
 	var num1=(b2.x-b1.x)*(a1.y-b1.y)-(b2.y - b1.y) * (a1.x - b1.x);
 	var num2=(a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x);
